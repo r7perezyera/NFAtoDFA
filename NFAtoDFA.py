@@ -3,12 +3,13 @@
 """
 This program is rlly cool thks for using it
 """
-
 import sys
 from collections import defaultdict
 from itertools import chain, combinations
 
 it = open("test.txt", "r")
+
+
 
 # it = iter(sys.stdin.read().splitlines())
 
@@ -20,7 +21,7 @@ def powerset(iterable):
     return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
 
 
-# eliminacion manual
+# read input and create a list of triplets
 triplets = next(it).split("),(")
 triplets[0] = triplets[0][2::]
 triplets[-1] = triplets[-1][:-3:]
@@ -29,25 +30,24 @@ triplets[-1] = triplets[-1][:-3:]
 triples=[]
 for x in range(0, len(triplets)):
     triples.append(triplets[x].split(","))
-print("triples",triples)
+
 
 sigmaN = []
-for triplet in triplets:
-    if triplet[0] not in sigmaN:
-        sigmaN.append(triplet[0])
+for x in range(0, len(triples)):
+    if triples[x][0]not in sigmaN:
+        sigmaN.append(triples[x][0])
 
 sigmaD = sigmaN
 
+#print("SigmaN:",sigmaN)
 print("SigmaD:",sigmaD)
 
 
 
 statesN = []
-for triplet in triplets:
-    if triplet[2] not in statesN:
-        statesN.append(triplet[2])
-    if triplet[4] not in statesN:
-        statesN.append(triplet[4])
+for x in range(0,len(triples)):
+    if triples[x][1]not in statesN:
+        statesN.append(triples[x][1])
 
 print("States in NFA (Q_N):",statesN)
 
@@ -58,7 +58,19 @@ for element in statesNpowerset:
 print("states of DFA (power set)",statesD)
 
 
+#states accepted
+statesAcceptD = []
+for x in range(0,len(statesD)):
+    if len(statesD[x])>0:
+        for y in range(0,len(statesD[x])):
+            if statesD[x][y] == statesN[-1]:
+                statesAcceptD.append(statesD[x])
+print("States accepted in DFA (Q_D):",statesAcceptD)
 
+#first state
+print("First state in DFA",statesD[1])
+
+#delta first part
 delta = defaultdict(list)
 key = ""
 for input,exit,destination in triples:
