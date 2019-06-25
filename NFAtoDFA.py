@@ -28,7 +28,7 @@ triplets[-1] = triplets[-1][:-3:]
 triples=[]
 for x in range(0, len(triplets)):
     triples.append(triplets[x].split(","))
-print(triples)
+
 
 
 
@@ -44,22 +44,26 @@ sigmaD = sigmaN
 print("SigmaD:",sigmaD)
 
 
-
 statesN = []
 for x in range(0,len(triples)):
     if triples[x][1]not in statesN:
         statesN.append(triples[x][1])
 
 print("States in NFA (Q_N):",statesN)
+"""_____________________________________________________________"""
 
 statesD = []    # powerset of the set of states of NFA
 statesNpowerset = powerset(statesN)
 for element in statesNpowerset:
     statesD.append(list(element))
-print(statesD)
-
-statesD = powerset(statesN)
 print("States in DFA (Q_D):",statesD)
-print(powerset([1,2,3]))
 
+statesAcceptD = []
 
+for x in range(0,len(statesD)):
+    if len(statesD[x])>0:
+        for y in range(0,len(statesD[x])):
+            if statesD[x][y] == statesN[-1]:
+                statesAcceptD.append(statesD[x])
+
+print("States accepted in DFA (Q_D):",statesAcceptD)
