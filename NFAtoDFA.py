@@ -65,8 +65,9 @@ for x in range(0,len(statesD)):
         for y in range(0,len(statesD[x])):
             if statesD[x][y] == statesN[-1]:
                 statesAcceptD.append(statesD[x])
-
 print("States accepted in DFA (Q_D):",statesAcceptD)
+
+#delta first part
 delta = defaultdict(list)
 key = ""
 for input,exit,destination in triples:
