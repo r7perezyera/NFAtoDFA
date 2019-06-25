@@ -29,10 +29,6 @@ for triplet in triplets:
     if triplet[0] not in sigmaN:
         sigmaN.append(triplet[0])
 
-# should we int them tho?
-# this block does not work
-for symbol in sigmaN:
-    int(symbol)
 
 sigmaD = sigmaN
 
