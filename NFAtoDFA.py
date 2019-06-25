@@ -46,11 +46,9 @@ print("SigmaD:",sigmaD)
 
 
 statesN = []
-for triplet in triplets:
-    if triplet[2] not in statesN:
-        statesN.append(triplet[2])
-    if triplet[4] not in statesN:
-        statesN.append(triplet[4])
+for x in range(0,len(triples)):
+    if triples[x][1]not in statesN:
+        statesN.append(triples[x][1])
 
 print("States in NFA (Q_N):",statesN)
 
