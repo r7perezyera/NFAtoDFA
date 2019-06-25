@@ -4,12 +4,13 @@
 This program is rlly cool thks for using it
 """
 import sys
+from itertools import chain, combinations
 
 it = open("test.txt", "r")
 
-from itertools import chain, combinations
 
-it = iter(sys.stdin.read().splitlines())
+
+# it = iter(sys.stdin.read().splitlines())
 
 
 
