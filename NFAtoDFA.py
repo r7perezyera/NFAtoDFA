@@ -108,4 +108,4 @@ print(header)
 print(rows)
 
 
-print(tabulate(rows, headers=header))
+print(tabulate(rows, headers=header, tablefmt='orgtbl'))
