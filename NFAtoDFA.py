@@ -35,8 +35,8 @@ print(triples)
 
 sigmaN = []
 for x in range(0, len(triples)):
-    if triples[x][2]not in sigmaN:
-        sigmaN.append(triples[x][2])
+    if triples[x][0]not in sigmaN:
+        sigmaN.append(triples[x][0])
 
 sigmaD = sigmaN
 
