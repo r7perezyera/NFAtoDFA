@@ -75,3 +75,5 @@ for input,exit,destination in triples:
     delta[exit][index].append(destination)
 
 print("Delta:",delta)
+
+
