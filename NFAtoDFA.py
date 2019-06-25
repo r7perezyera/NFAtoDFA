@@ -35,14 +35,9 @@ print(triples)
 
 
 sigmaN = []
-for triplet in triplets:
-    if triplet[0] not in sigmaN:
-        sigmaN.append(triplet[0])
-
-# should we int them tho?
-# this block does not work
-for symbol in sigmaN:
-    int(symbol)
+for x in range(0, len(triples)):
+    if triples[x][2]not in sigmaN:
+        sigmaN.append(triples[x][2])
 
 sigmaD = sigmaN
 
