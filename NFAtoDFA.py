@@ -55,8 +55,8 @@ for element in statesNpowerset:
     statesD.append(list(element))
 print("States in DFA (Q_D):",statesD)
 
+#states accepted
 statesAcceptD = []
-
 for x in range(0,len(statesD)):
     if len(statesD[x])>0:
         for y in range(0,len(statesD[x])):
