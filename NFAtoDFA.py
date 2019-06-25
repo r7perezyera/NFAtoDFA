@@ -41,8 +41,8 @@ for symbol in sigmaN:
 
 sigmaD = sigmaN
 
-print("SigmaN:",sigmaN)
-print("Thus, sigmaD:",sigmaD)
+#print("SigmaN:",sigmaN)
+print("SigmaD:",sigmaD)
 
 
 
