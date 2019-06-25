@@ -4,7 +4,7 @@
 This program is rlly cool thks for using it
 """
 import sys
-it = iter(sys.stdin.read().splitlines())
+it = open("test.txt", "r")
 
 
 
@@ -24,8 +24,13 @@ def powerset(seq):
 # read input and create a list of triplets
 triplets = next(it).split("),(")
 triplets[0] = triplets[0][2::]
-triplets[-1] = triplets[-1][:-2:]
-print(triplets)
+triplets[-1] = triplets[-1][:-3:]
+
+triples=[]
+for x in range(0, len(triplets)):
+    triples.append(triplets[x].split(","))
+print(triples)
+
 
 
 
