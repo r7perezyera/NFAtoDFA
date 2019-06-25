@@ -4,21 +4,20 @@
 This program is rlly cool thks for using it
 """
 import sys
+from itertools import chain, combinations
+
 it = open("test.txt", "r")
 
 
 
-def powerset(seq):
-    """
-    Returns all the subsets of this set. This is a generator.
-    """
-    if len(seq) <= 1:
-        yield seq
-        yield []
-    else:
-        for item in powerset(seq[1:]):
-            yield [seq[0]]+item
-            yield item
+# it = iter(sys.stdin.read().splitlines())
+
+
+
+def powerset(iterable):
+    "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
+    s = list(iterable)
+    return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
 
 
 # read input and create a list of triplets
@@ -55,6 +54,11 @@ for triplet in triplets:
 
 print("States in NFA (Q_N):",statesN)
 
+statesD = []    # powerset of the set of states of NFA
+statesNpowerset = powerset(statesN)
+for element in statesNpowerset:
+    statesD.append(list(element))
+print(statesD)
 
 statesD = powerset(statesN)
 print("States in DFA (Q_D):",statesD)
