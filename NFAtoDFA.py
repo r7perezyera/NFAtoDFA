@@ -30,9 +30,6 @@ for x in range(0, len(triplets)):
     triples.append(triplets[x].split(","))
 
 
-
-
-
 sigmaN = []
 for x in range(0, len(triples)):
     if triples[x][0]not in sigmaN:
