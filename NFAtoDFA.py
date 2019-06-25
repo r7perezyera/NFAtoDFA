@@ -67,6 +67,9 @@ for x in range(0,len(statesD)):
                 statesAcceptD.append(statesD[x])
 print("States accepted in DFA (Q_D):",statesAcceptD)
 
+#first state
+print("First state in DFA",statesD[1])
+
 #delta first part
 delta = defaultdict(list)
 key = ""
