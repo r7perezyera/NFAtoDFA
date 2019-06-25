@@ -4,6 +4,7 @@
 This program is rlly cool thks for using it
 """
 import sys
+from collections import defaultdict
 from itertools import chain, combinations
 
 it = open("test.txt", "r")
@@ -25,6 +26,7 @@ triplets = next(it).split("),(")
 triplets[0] = triplets[0][2::]
 triplets[-1] = triplets[-1][:-3:]
 
+
 triples=[]
 for x in range(0, len(triplets)):
     triples.append(triplets[x].split(","))
@@ -41,19 +43,20 @@ sigmaD = sigmaN
 print("SigmaD:",sigmaD)
 
 
+
 statesN = []
 for x in range(0,len(triples)):
     if triples[x][1]not in statesN:
         statesN.append(triples[x][1])
 
 print("States in NFA (Q_N):",statesN)
-"""_____________________________________________________________"""
 
 statesD = []    # powerset of the set of states of NFA
 statesNpowerset = powerset(statesN)
 for element in statesNpowerset:
     statesD.append(list(element))
-print("States in DFA (Q_D):",statesD)
+print("states of DFA (power set)",statesD)
+
 
 #states accepted
 statesAcceptD = []
@@ -64,3 +67,19 @@ for x in range(0,len(statesD)):
                 statesAcceptD.append(statesD[x])
 
 print("States accepted in DFA (Q_D):",statesAcceptD)
+delta = defaultdict(list)
+key = ""
+for input,exit,destination in triples:
+    if input == "0":
+        index = 0
+    elif input == "1":
+        index = 1
+    else:
+        entry = -1
+        index = -1
+
+    if exit not in delta:
+        delta[exit] = [[],[]]
+    delta[exit][index].append(destination)
+
+print("Delta:",delta)
