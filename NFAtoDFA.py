@@ -6,6 +6,7 @@ This program is rlly cool thks for using it
 import sys
 from collections import defaultdict
 from itertools import chain, combinations
+from tabulate import tabulate
 
 it = open("test.txt", "r")
 
@@ -89,3 +90,22 @@ for input,exit,destination in triples:
 print("Delta:",delta)
 
 
+header = ["q","0","1"]
+rows = []
+
+for qi in statesD:
+    row = [qi, [], []]
+    for state in qi:
+        for i in delta[state][0]:
+            row[1].append(i)
+        for i in delta[state][1]:
+            row[2].append(i)
+        row[1] = list(set(row[1]))
+        row[2] = list(set(row[2]))
+    rows.append(row)
+
+print(header)
+print(rows)
+
+
+print(tabulate(rows, headers=header))
