@@ -8,13 +8,9 @@ from collections import defaultdict
 from itertools import chain, combinations
 from tabulate import tabulate
 
+out=open("output.txt","w")
 it = open("test.txt", "r")
-
-
-
 # it = iter(sys.stdin.read().splitlines())
-
-
 
 def powerset(iterable):
     "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
@@ -41,7 +37,7 @@ for x in range(0, len(triples)):
 sigmaD = sigmaN
 
 #print("SigmaN:",sigmaN)
-print("SigmaD:",sigmaD)
+out.write("SigmaD: %s\n" %(sigmaD))
 
 
 
@@ -50,13 +46,13 @@ for x in range(0,len(triples)):
     if triples[x][1]not in statesN:
         statesN.append(triples[x][1])
 
-print("States in NFA (Q_N):",statesN)
+out.write("States in NFA (Q_N): %s\n" %(statesN))
 
 statesD = []    # powerset of the set of states of NFA
 statesNpowerset = powerset(statesN)
 for element in statesNpowerset:
     statesD.append(list(element))
-print("states of DFA (power set)",statesD)
+out.write("states of DFA (power set): %s\n" %(statesD))
 
 
 #states accepted
@@ -66,10 +62,10 @@ for x in range(0,len(statesD)):
         for y in range(0,len(statesD[x])):
             if statesD[x][y] == statesN[-1]:
                 statesAcceptD.append(statesD[x])
-print("States accepted in DFA (Q_D):",statesAcceptD)
+out.write("States accepted in DFA (Q_D): %s\n "%(statesAcceptD))
 
 #first state
-print("First state in DFA",statesD[1])
+out.write("First state in DFA: %s\n"%(statesD[1]))
 
 #delta first part
 delta = defaultdict(list)
@@ -87,7 +83,7 @@ for input,exit,destination in triples:
         delta[exit] = [[],[]]
     delta[exit][index].append(destination)
 
-print("Delta:",delta)
+#print("Delta:",delta)
 
 
 header = ["q","0","1"]
@@ -104,8 +100,9 @@ for qi in statesD:
         row[2] = list(set(row[2]))
     rows.append(row)
 
-print(header)
-print(rows)
+#print(header)
+#print(rows)
 
-
-print(tabulate(rows, headers=header))
+out.write("\n Transition table: \n")
+out.write(tabulate(rows, headers=header))
+out.close()
