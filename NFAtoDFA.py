@@ -10,7 +10,12 @@ from tabulate import tabulate
 
 out=open("output.txt","w")
 it = open("test.txt", "r")
+
+
+
 # it = iter(sys.stdin.read().splitlines())
+
+
 
 def powerset(iterable):
     "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
