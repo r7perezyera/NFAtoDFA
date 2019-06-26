@@ -107,7 +107,7 @@ for qi in statesD:
 
 #print(header)
 #print(rows)
-
+#
 out.write("\n Transition table: \n")
 out.write(tabulate(rows, headers=header))
 out.close()
