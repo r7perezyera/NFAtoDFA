@@ -1,7 +1,9 @@
 # Encoding: UTF-8
 # Authors: Javier Martínez Hernández, Roberto Téllez Perezyera
 """
-This program is rlly cool thks for using it
+This program implements an algorithm to convert an NFA to a DFA
+It receives the NFA as a set of 3-tuples, and outputs the formal description
+of its equivalent DFA
 """
 import sys
 from collections import defaultdict
@@ -10,11 +12,7 @@ from tabulate import tabulate
 
 out=open("output.txt","w")
 it = open("test.txt", "r")
-
-
-
 # it = iter(sys.stdin.read().splitlines())
-
 
 
 def powerset(iterable):
