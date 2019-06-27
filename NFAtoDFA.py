@@ -8,7 +8,7 @@ of its equivalent DFA
 import sys
 from collections import defaultdict
 from itertools import chain, combinations
-from tabulate import tabulate
+#from tabulate import tabulate
 
 out=open("output.txt","w")
 it = open("test.txt", "r")
@@ -103,9 +103,11 @@ for qi in statesD:
         row[2] = list(set(row[2]))
     rows.append(row)
 
-#print(header)
 #print(rows)
 #
 out.write("\n Transition table: \n")
-out.write(tabulate(rows, headers=header))
+out.write("%s\n"%(header))
+out.write("_________________________________\n")
+for x in range(0,len(rows)):
+    out.write("%s \n"%(rows[x]))
 out.close()
