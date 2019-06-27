@@ -10,8 +10,10 @@ from collections import defaultdict
 from itertools import chain, combinations
 #from tabulate import tabulate
 
+fileToRead = input("Teclee el nombre del archivo: ")
+
+it = open(fileToRead, "r")
 out=open("output.txt","w")
-it = open("test.txt", "r")
 # it = iter(sys.stdin.read().splitlines())
 
 
@@ -111,3 +113,4 @@ out.write("_________________________________\n")
 for x in range(0,len(rows)):
     out.write("%s \n"%(rows[x]))
 out.close()
+print("El archivo se ha escrito exitosamente. Revise la carpeta del proyecto.\nFin.")
