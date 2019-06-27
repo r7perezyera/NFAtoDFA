@@ -9,11 +9,9 @@ import sys
 from collections import defaultdict
 from itertools import chain, combinations
 #from tabulate import tabulate
+from tkinter import *
+from tkinter import messagebox, filedialog
 
-fileToRead = input("Teclee el nombre del archivo: ")
-
-it = open(fileToRead, "r")
-out=open("output.txt","w")
 # it = iter(sys.stdin.read().splitlines())
 
 
@@ -23,8 +21,78 @@ def powerset(iterable):
     return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
 
 
+def init():
+    # Do the GUI - Homescreen
+    window = Tk()
+    window.title("1st term project - Luis / Roberto")
+    window.geometry("600x600")
+    ANCHO = 600
+    ALTO = 600
+    window.attributes('-topmost', False)
+
+    tagInfo = Label(window, text="Javier Martínez Hernández - A01375496\n"
+                                 "Roberto Téllez Perezyera - A01374866", justify=RIGHT).place(x=ANCHO - 345, y=5)
+    tag1 = Label(window, text="Bienvenido.").place(x=10, y=60)
+    tag2 = Label(window,
+                 text="A continuación podrá cargar el archivo de texto con el NFA que desea convertir a DFA.").place(
+        x=10, y=90)
+    tag3 = Label(window, text="Haga click en Start para iniciar.").place(x=10, y=120)
+    tag4 = Label(window,
+                 text="Aparecerá un prompt para abrir el archivo de texto.").place(
+        x=10, y=150)
+    tagn = Label(window, text="Puede cerrar esa nueva ventana y repetir el proceso desde esta ventana para la\n"
+                              "segunda prueba.").place(x=10, y=180)
+    tagn1 = Label(window, text="Click on Quit on the lower right corner to close this window.").place(x=10, y=265)
+
+    startButton = Button(window, text="Start",command=aiDiseGratis ).place(x=(ANCHO // 2) - 30, y=ALTO // 2)
+    exitButton = Button(window, text="Quit", command=window.quit).place(x=540, y=565)
+
+    window.mainloop()
+
+
+def aiDiseGratis():
+    # we DON'T want home window at the very top anymore
+    inputFilePath = filedialog.askopenfilename(filetypes=(("Text files", "*.txt"),  # path to file 1
+                                                  ("All files", ".")))
+    global inputFromGUI
+    inputFromGUI = open(inputFilePath, 'r')#.readlines()
+
+    messagebox.showinfo("Success", "File has been read.")
+    messagebox.showinfo("See your output", "Puede encontrar el archivo .txt con el output en el mismo folder"
+                                           " donde está este archivo .py :).")
+
+    solutionWindow = Tk()
+    solutionWindow.title("Solutions")
+    solutionWindow.geometry("1000x840")
+
+
+    tagTextbook = Label(solutionWindow, text="Textbook solution", justify=LEFT).grid(row=1, column=1)
+
+    tagMultipCountTe = Label(solutionWindow, text="number of scalar multiplications: %d" % (1.0),
+                             justify=LEFT).grid(row=2,
+                                                column=1)
+    tagStrassen = Label(solutionWindow, text="Textbook solution", justify=LEFT).grid(row=3, column=1)
+
+    tagMultipCountStrassen = Label(solutionWindow,
+                                   text="number of scalar multiplications: %d" % (2.0),
+                                   justify=LEFT).grid(row=4,
+                                                      column=1)
+    tagFilePath = Label(solutionWindow, text="Matrix C is found at: %s" % ("the folder"), justify=LEFT).grid(row=5, column=1)
+
+    solutionWindow.mainloop()
+
+
+
+#fileToRead = input("Teclee el nombre del archivo: ")
+init()
+
+#it = open(fileToRead, "r")
+out=open("output.txt","w")
+
+
 # read input and create a list of triplets
-triplets = next(it).split("),(")
+#triplets = next(it).split("),(")
+triplets = next(inputFromGUI).split("),(")
 triplets[0] = triplets[0][2::]
 triplets[-1] = triplets[-1][:-3:]
 
@@ -113,4 +181,7 @@ out.write("_________________________________\n")
 for x in range(0,len(rows)):
     out.write("%s \n"%(rows[x]))
 out.close()
-print("El archivo se ha escrito exitosamente. Revise la carpeta del proyecto.\nFin.")
+print("El archivo se ha escrito exitosamente. Revise la carpeta del proyecto.\n"
+      "Este programa ha finalizado.")
+
+init()
